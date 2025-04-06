@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Pneumonia Detector{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto text-center">
+        <h1 class="display-4 mb-4">Pneumonia Detection System</h1>
+        <p class="lead">
+            Pneumonia is an infection that inflames the air sacs in one or both lungs.
+            Our system helps detect pneumonia from chest X-ray images using advanced AI technology.
+        </p>
+
+        <div class="card my-5">
+            <div class="card-body">
+                <h2 class="card-title">Key Facts About Pneumonia</h2>
+                <ul class="text-start">
+                    <li>Pneumonia can range from mild to life-threatening</li>
+                    <li>It's most serious for infants, young children, and older adults</li>
+                    <li>Early detection can significantly improve outcomes</li>
+                    <li>Chest X-rays are commonly used for diagnosis</li>
+                </ul>
+            </div>
+        </div>
+
+        <a href="{{ url_for('detect') }}" class="btn btn-primary btn-lg mt-3">
+            Detect Pneumonia Now
+        </a>
+    </div>
+</div>
+{% endblock %}

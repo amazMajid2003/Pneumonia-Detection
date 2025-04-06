@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Detect Pneumonia{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h1 class="mb-4">Pneumonia Detection</h1>
+        <p>Upload a chest X-ray image to analyze for pneumonia.</p>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data" id="uploadForm">
+                    <div class="mb-3">
+                        <label for="fileInput" class="form-label">Select X-ray Image</label>
+                        <input class="form-control" type="file" id="fileInput" name="file" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Analyze Image</button>
+                </form>
+            </div>
+        </div>
+
+        {% if result %}
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Analysis Results</h2>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Display uploaded image -->
+                        <img src="{{ url_for('static', filename='uploads/' + uploaded_image) }}"
+                             class="img-fluid rounded border" alt="Uploaded Image" >
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>Prediction Details</h3>
+                                <table class="table">
+                                    <tr>
+                                        <th>Predicted Class:</th>
+                                        <td>{{ result.class }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Confidence:</th>
+                                        <td>{{ "%.2f"|format(result.confidence * 100) }}%</td>
+                                    </tr>
+                                </table>
+
+                                <div class="progress mt-3">
+                                    <div class="progress-bar {% if result.class == 'Pneumonia' %}bg-danger{% else %}bg-success{% endif %}"
+                                         role="progressbar"
+                                         style="width: {{ result.confidence * 100 }}%"
+                                         aria-valuenow="{{ result.confidence * 100 }}"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100">
+                                    </div>
+                                </div>
+
+                                {% if result.class == 'Pneumonia' %}
+                                <div class="alert alert-danger mt-3">
+                                    <strong>Medical Attention Recommended</strong>
+                                    <p class="mb-0">This result suggests pneumonia may be present. Please consult with a healthcare professional.</p>
+                                </div>
+                                {% else %}
+                                <div class="alert alert-success mt-3">
+                                    <strong>Normal Result</strong>
+                                    <p class="mb-0">No signs of pneumonia detected in this image.</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+
+
+    </div>
+</div>
+{% endblock %}

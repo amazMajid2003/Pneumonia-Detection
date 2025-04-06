@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}About Pneumonia Detector{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h1 class="mb-4">About Pneumonia Detection</h1>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">Our Mission</h2>
+                <p>
+                    Our mission is to provide accessible pneumonia detection using artificial intelligence.
+                    We aim to assist healthcare professionals and individuals in early detection of pneumonia
+                    through chest X-ray analysis.
+                </p>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">How It Works</h2>
+                <p>
+                    Our system uses a deep learning model trained on thousands of chest X-ray images to
+                    identify patterns associated with pneumonia. When you upload an image, our algorithm
+                    analyzes it and provides a detection result with confidence level.
+                </p>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">Important Notes</h2>
+                <ul>
+                    <li>This tool is not a substitute for professional medical advice</li>
+                    <li>Always consult with a healthcare provider for diagnosis</li>
+                    <li>Results should be interpreted by qualified medical professionals</li>
+                    <li>The system has an accuracy of approximately 90% (simulated for this demo)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
